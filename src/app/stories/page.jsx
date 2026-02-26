@@ -2,9 +2,7 @@
 import React, { useState,useEffect } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
 import {
-  IconArrowLeft,
-  IconSettings,
-  IconUserBolt,
+  IconBrandGithub,
   IconHome
 } from "@tabler/icons-react";
 import { motion } from "motion/react";
@@ -28,7 +26,13 @@ export default function SidebarDemo() {
         <IconHome className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
     },
-    
+    {
+      label: "GitHub",
+      href: "https://github.com/Tuhinm2002/storydiary/tree/main",
+      icon: (
+        <IconBrandGithub className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+      ),
+    },
   ];
   const [open, setOpen] = useState(false);
   return (
@@ -87,16 +91,28 @@ export const LogoIcon = () => {
 const Dashboard = () => {
 
   const [content,setContent] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  axios.get("http://127.0.0.1:5000/api/stories")
-    .then((response) => {
-      setContent(response.data.data);
-    })
-    .catch((error) => console.log(error));
-}, []);
+    axios
+      .get("https://storydiarybackend.vercel.app/api/stories")
+      .then((response) => {
+        setContent(response.data.data);
+        setLoading(false); // ✅ Data loaded
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false); // ✅ Stop loading even on error
+      });
+  }, []);
 
-  console.log(content)
+  if (loading) {
+    return (
+      <div className="flex-1 flex items-center justify-center text-gray-500 h-screen">
+        Loading content...
+      </div>
+    );
+  }
 
   return (
     <div className="flex-1 overflow-y-auto">

@@ -22,6 +22,7 @@ export default function StoryHeadingDemo() {
             "নিশির ডাক",
             "মেছো ভূত",
             "আলেয়া",
+            "folklores and more"
           ]}
         />
       </motion.h1>

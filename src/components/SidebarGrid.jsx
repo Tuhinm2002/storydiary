@@ -2,9 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
 import {
-  IconArrowLeft,
-  IconSettings,
-  IconUserBolt,
+  IconBrandGithub,IconHome
 } from "@tabler/icons-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -24,6 +22,13 @@ export function SidebarDemo() {
 
   const links = [
     {
+      label: "Home",
+      href: "/",
+      icon: (
+        <IconHome className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+      ),
+    },
+    {
       label: "Stories",
       href: "/stories",
       icon: (
@@ -34,6 +39,13 @@ export function SidebarDemo() {
           height={20}
           className="shrink-0"
         />
+      ),
+    },
+    {
+      label: "GitHub",
+      href: "https://github.com/Tuhinm2002/storydiary/tree/main",
+      icon: (
+        <IconBrandGithub className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
     },
   ];
